@@ -1,0 +1,5 @@
+anthropic
+langgraph
+langchain-anthropic
+pydantic-ai-slim[anthropic]
+python-dotenv

@@ -1,0 +1,10 @@
+{
+  "defective": {"description": "Item arrived broken or stopped working shortly after delivery.", "window_days": 90, "auto_approve": true, "requires_manager": false},
+  "wrong_item": {"description": "Customer received a different item than what was ordered.", "window_days": 60, "auto_approve": true, "requires_manager": false},
+  "damaged_in_transit": {"description": "Item was damaged during shipping.", "window_days": 30, "auto_approve": true, "requires_manager": false},
+  "not_as_described": {"description": "Item materially differs from its listing.", "window_days": 30, "auto_approve": true, "requires_manager": false},
+  "changed_mind": {"description": "Standard no-fault return; customer no longer wants the item.", "window_days": 14, "auto_approve": true, "requires_manager": false},
+  "duplicate_charge": {"description": "Customer was billed more than once for the same order.", "window_days": 180, "auto_approve": true, "requires_manager": false},
+  "late_delivery": {"description": "Delivery arrived significantly later than promised; refund is discretionary and needs human judgment on partial vs full refund.", "window_days": 45, "auto_approve": false, "requires_manager": true},
+  "fraud_suspected": {"description": "Customer reports they did not make this purchase or suspects account compromise.", "window_days": 0, "auto_approve": false, "requires_manager": true}
+}

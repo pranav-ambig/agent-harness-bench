@@ -1,0 +1,19 @@
+{
+  "ORD-1001": {"item": "Wireless Mouse", "amount": 24.99, "days_since_delivery": 5, "status": "delivered"},
+  "ORD-1002": {"item": "Bluetooth Speaker", "amount": 59.00, "days_since_delivery": 12, "status": "delivered"},
+  "ORD-1003": {"item": "Laptop Stand", "amount": 39.50, "days_since_delivery": 20, "status": "delivered"},
+  "ORD-1004": {"item": "Desk Lamp", "amount": 18.75, "days_since_delivery": 45, "status": "delivered"},
+  "ORD-1005": {"item": "Mechanical Keyboard", "amount": 89.99, "days_since_delivery": 3, "status": "delivered"},
+  "ORD-1006": {"item": "USB-C Hub", "amount": 29.99, "days_since_delivery": 65, "status": "delivered"},
+  "ORD-1007": {"item": "Office Chair", "amount": 210.00, "days_since_delivery": 10, "status": "delivered"},
+  "ORD-1008": {"item": "Monitor Arm", "amount": 45.00, "days_since_delivery": 100, "status": "delivered"},
+  "ORD-1009": {"item": "Webcam", "amount": 54.99, "days_since_delivery": 8, "status": "delivered"},
+  "ORD-1010": {"item": "Noise Cancelling Headphones", "amount": 149.99, "days_since_delivery": 2, "status": "delivered"},
+  "ORD-1011": {"item": "External SSD", "amount": 99.00, "days_since_delivery": 15, "status": "delivered"},
+  "ORD-1012": {"item": "Standing Desk", "amount": 320.00, "days_since_delivery": 40, "status": "delivered"},
+  "ORD-1013": {"item": "Phone Case", "amount": 12.99, "days_since_delivery": 400, "status": "delivered"},
+  "ORD-1014": {"item": "Graphics Tablet", "amount": 175.00, "days_since_delivery": 6, "status": "delivered"},
+  "ORD-1015": {"item": "Ring Light", "amount": 27.50, "days_since_delivery": 25, "status": "cancelled"},
+  "ORD-1016": {"item": "Smart Watch", "amount": 249.00, "days_since_delivery": 1, "status": "delivered"},
+  "ORD-1017": {"item": "Charging Cable", "amount": 9.99, "days_since_delivery": 33, "status": "delivered"}
+}

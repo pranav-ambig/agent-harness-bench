@@ -1,0 +1,95 @@
+{
+  "raw_loop": {
+    "n_cases": 30,
+    "task_success_rate": 0.9333333333333333,
+    "error_rate": 0.0,
+    "wrong_tool_rate": 0.0,
+    "latency_p50_ms": 5389.900050000051,
+    "latency_p95_ms": 6649.203945000204,
+    "latency_mean_ms": 4880.374923333345,
+    "total_tokens": 113553,
+    "avg_tokens_per_task": 3785.1,
+    "total_cost_usd": 0.14729699999999998,
+    "avg_cost_per_task_usd": 0.004909899999999999,
+    "per_bucket": {
+      "happy_path": {
+        "n": 8,
+        "success_rate": 1.0
+      },
+      "policy_violation": {
+        "n": 8,
+        "success_rate": 1.0
+      },
+      "escalation": {
+        "n": 7,
+        "success_rate": 0.8571428571428571
+      },
+      "missing_info": {
+        "n": 7,
+        "success_rate": 0.8571428571428571
+      }
+    }
+  },
+  "langgraph": {
+    "n_cases": 30,
+    "task_success_rate": 0.9333333333333333,
+    "error_rate": 0.0,
+    "wrong_tool_rate": 0.0,
+    "latency_p50_ms": 5874.703000000181,
+    "latency_p95_ms": 7549.659394999933,
+    "latency_mean_ms": 5145.086670000076,
+    "total_tokens": 111799,
+    "avg_tokens_per_task": 3726.633333333333,
+    "total_cost_usd": 0.146223,
+    "avg_cost_per_task_usd": 0.0048741,
+    "per_bucket": {
+      "happy_path": {
+        "n": 8,
+        "success_rate": 1.0
+      },
+      "policy_violation": {
+        "n": 8,
+        "success_rate": 1.0
+      },
+      "escalation": {
+        "n": 7,
+        "success_rate": 0.7142857142857143
+      },
+      "missing_info": {
+        "n": 7,
+        "success_rate": 1.0
+      }
+    }
+  },
+  "pydantic_ai": {
+    "n_cases": 30,
+    "task_success_rate": 0.9,
+    "error_rate": 0.0,
+    "wrong_tool_rate": 0.0,
+    "latency_p50_ms": 5545.185199999878,
+    "latency_p95_ms": 9007.533674999853,
+    "latency_mean_ms": 5526.557973333304,
+    "total_tokens": 108192,
+    "avg_tokens_per_task": 3606.4,
+    "total_cost_usd": 0.14136,
+    "avg_cost_per_task_usd": 0.004712,
+    "per_bucket": {
+      "happy_path": {
+        "n": 8,
+        "success_rate": 1.0
+      },
+      "policy_violation": {
+        "n": 8,
+        "success_rate": 0.875
+      },
+      "escalation": {
+        "n": 7,
+        "success_rate": 0.7142857142857143
+      },
+      "missing_info": {
+        "n": 7,
+        "success_rate": 1.0
+      }
+    }
+  }
+}

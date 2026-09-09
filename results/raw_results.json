@@ -1,0 +1,4596 @@
+[
+  {
+    "case_id": "hp01",
+    "bucket": "happy_path",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 6570.498699999916,
+    "usage": {
+      "input_tokens": 4673,
+      "output_tokens": 365
+    },
+    "cost_usd": 0.006498,
+    "final_text": "**Refund Processed!** \u2713\n\nYour refund of **$24.99** has been issued for order ORD-1001 (Wireless Mouse). The credit should appear in your original payment method within 3-5 business days. \n\nSorry the mouse didn't work as expected. Let me know if you need anything else!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1001"
+        },
+        "result": {
+          "item": "Wireless Mouse",
+          "amount": 24.99,
+          "days_since_delivery": 5,
+          "status": "delivered",
+          "order_id": "ORD-1001"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "defective"
+        },
+        "result": {
+          "description": "Item arrived broken or stopped working shortly after delivery.",
+          "window_days": 90,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "defective"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1001",
+          "amount": 24.99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1001",
+          "amount": 24.99
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp02",
+    "bucket": "happy_path",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 5171.663399999943,
+    "usage": {
+      "input_tokens": 4652,
+      "output_tokens": 372
+    },
+    "cost_usd": 0.0065119999999999996,
+    "final_text": "**Refund Approved!** \u2713\n\nI've successfully issued a refund of **$59.00** to your account for order ORD-1002. The refund should appear within 3-5 business days depending on your payment method.\n\nSince you received the wrong item, please arrange to return it or we can provide a prepaid return label if needed. Feel free to reach out if you have any other questions!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1002"
+        },
+        "result": {
+          "item": "Bluetooth Speaker",
+          "amount": 59.0,
+          "days_since_delivery": 12,
+          "status": "delivered",
+          "order_id": "ORD-1002"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "wrong_item"
+        },
+        "result": {
+          "description": "Customer received a different item than what was ordered.",
+          "window_days": 60,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "wrong_item"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1002",
+          "amount": 59
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1002",
+          "amount": 59
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp03",
+    "bucket": "happy_path",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 6534.09210000018,
+    "usage": {
+      "input_tokens": 4660,
+      "output_tokens": 359
+    },
+    "cost_usd": 0.006455,
+    "final_text": "Perfect! Your refund has been processed successfully. Here are the details:\n\n- **Order ID:** ORD-1005\n- **Item:** Mechanical Keyboard\n- **Refund Amount:** $89.99\n- **Status:** Refunded\n\nYou should see the credit back to your original payment method within 3-5 business days. Please make sure to return the keyboard to our warehouse according to the return shipping instructions you'll receive via email.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1005"
+        },
+        "result": {
+          "item": "Mechanical Keyboard",
+          "amount": 89.99,
+          "days_since_delivery": 3,
+          "status": "delivered",
+          "order_id": "ORD-1005"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1005",
+          "amount": 89.99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1005",
+          "amount": 89.99
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp04",
+    "bucket": "happy_path",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 6010.185300000103,
+    "usage": {
+      "input_tokens": 4666,
+      "output_tokens": 340
+    },
+    "cost_usd": 0.006366,
+    "final_text": "Perfect! Your refund has been processed successfully. **$54.99 has been refunded to your account** for order ORD-1009. You should see it back in your original payment method within 3\u20135 business days. Sorry about the damaged webcam, and thanks for your patience!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1009"
+        },
+        "result": {
+          "item": "Webcam",
+          "amount": 54.99,
+          "days_since_delivery": 8,
+          "status": "delivered",
+          "order_id": "ORD-1009"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "damaged_in_transit"
+        },
+        "result": {
+          "description": "Item was damaged during shipping.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "damaged_in_transit"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1009",
+          "amount": 54.99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1009",
+          "amount": 54.99
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp05",
+    "bucket": "happy_path",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 5865.542699999878,
+    "usage": {
+      "input_tokens": 4673,
+      "output_tokens": 343
+    },
+    "cost_usd": 0.006388,
+    "final_text": "Perfect! Your refund has been successfully processed. **$99.00** has been refunded to your original payment method for order ORD-1011. You should see the credit within 3-5 business days depending on your bank. \n\nIs there anything else I can help you with?",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1011"
+        },
+        "result": {
+          "item": "External SSD",
+          "amount": 99.0,
+          "days_since_delivery": 15,
+          "status": "delivered",
+          "order_id": "ORD-1011"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "not_as_described"
+        },
+        "result": {
+          "description": "Item materially differs from its listing.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "not_as_described"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1011",
+          "amount": 99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1011",
+          "amount": 99
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp06",
+    "bucket": "happy_path",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 6498.384100000294,
+    "usage": {
+      "input_tokens": 4663,
+      "output_tokens": 370
+    },
+    "cost_usd": 0.006513,
+    "final_text": "\u2713 **Refund processed!** I've issued a full refund of **$175.00** to your account for order ORD-1014. You should see the credit within 3\u20135 business days depending on your bank or payment provider.\n\nPlease arrange to return the defective tablet according to our standard return procedures. If you have any questions, feel free to reach out!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1014"
+        },
+        "result": {
+          "item": "Graphics Tablet",
+          "amount": 175.0,
+          "days_since_delivery": 6,
+          "status": "delivered",
+          "order_id": "ORD-1014"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "defective"
+        },
+        "result": {
+          "description": "Item arrived broken or stopped working shortly after delivery.",
+          "window_days": 90,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "defective"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1014",
+          "amount": 175
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1014",
+          "amount": 175
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp07",
+    "bucket": "happy_path",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 5760.247400000026,
+    "usage": {
+      "input_tokens": 4656,
+      "output_tokens": 326
+    },
+    "cost_usd": 0.006286,
+    "final_text": "Perfect! Your refund has been processed successfully. You'll receive $249.00 back to your original payment method. Please make sure to arrange to return the Smart Watch according to our return shipping instructions. If you have any questions, feel free to reach out!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1016"
+        },
+        "result": {
+          "item": "Smart Watch",
+          "amount": 249.0,
+          "days_since_delivery": 1,
+          "status": "delivered",
+          "order_id": "ORD-1016"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1016",
+          "amount": 249
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1016",
+          "amount": 249
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp08",
+    "bucket": "happy_path",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 5608.136700000159,
+    "usage": {
+      "input_tokens": 4650,
+      "output_tokens": 335
+    },
+    "cost_usd": 0.006325,
+    "final_text": "Perfect! I've successfully issued a refund of **$29.99** for the duplicate charge on order ORD-1006 (USB-C Hub). The refund has been processed and you should see it back in your account within 3-5 business days, depending on your payment method. Thank you for bringing this to our attention!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1006"
+        },
+        "result": {
+          "item": "USB-C Hub",
+          "amount": 29.99,
+          "days_since_delivery": 65,
+          "status": "delivered",
+          "order_id": "ORD-1006"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "duplicate_charge"
+        },
+        "result": {
+          "description": "Customer was billed more than once for the same order.",
+          "window_days": 180,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "duplicate_charge"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1006",
+          "amount": 29.99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1006",
+          "amount": 29.99
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "pv01",
+    "bucket": "policy_violation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 4312.809500000185,
+    "usage": {
+      "input_tokens": 2885,
+      "output_tokens": 239
+    },
+    "cost_usd": 0.00408,
+    "final_text": "I'm sorry, but I'm unable to process this refund. Your order ORD-1004 was delivered 45 days ago, but the \"changed mind\" return policy has a 14-day window from delivery. Since you're well outside that window, this order is no longer eligible for a refund.\n\nIf you have concerns about the item itself (for example, if it's defective or not as described), please let me know and I can review those options with you.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1004"
+        },
+        "result": {
+          "item": "Desk Lamp",
+          "amount": 18.75,
+          "days_since_delivery": 45,
+          "status": "delivered",
+          "order_id": "ORD-1004"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv02",
+    "bucket": "policy_violation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 4157.587100000001,
+    "usage": {
+      "input_tokens": 2894,
+      "output_tokens": 216
+    },
+    "cost_usd": 0.003974,
+    "final_text": "I'm unable to process this refund. Your order was delivered 65 days ago, but our refund policy for wrong item returns has a 60-day eligibility window. Since your order is now outside that window, it's no longer eligible for a refund.\n\nIf you believe this is an exception or have additional context, please let me know and I can escalate your case for further review.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1006"
+        },
+        "result": {
+          "item": "USB-C Hub",
+          "amount": 29.99,
+          "days_since_delivery": 65,
+          "status": "delivered",
+          "order_id": "ORD-1006"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "wrong_item"
+        },
+        "result": {
+          "description": "Customer received a different item than what was ordered.",
+          "window_days": 60,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "wrong_item"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv03",
+    "bucket": "policy_violation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 4993.407799999659,
+    "usage": {
+      "input_tokens": 2899,
+      "output_tokens": 314
+    },
+    "cost_usd": 0.004469,
+    "final_text": "I appreciate you reaching out, but unfortunately I'm unable to process a refund for this order. Here's why:\n\n**Order Details:**\n- Item: Monitor Arm\n- Amount: $45.00\n- Delivered: 100 days ago\n\n**Refund Policy for \"Not as Described\":**\n- The policy allows refunds when an item materially differs from its listing\n- **Refund window: 30 days from delivery**\n\nSince your order was delivered 100 days ago, it falls outside the 30-day refund window for this reason. The refund eligibility has expired.\n\nIf you believe there are extenuating circumstances or if you'd like to discuss this further, I'd recommend contacting our customer support team directly, and they can review your case individually.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1008"
+        },
+        "result": {
+          "item": "Monitor Arm",
+          "amount": 45.0,
+          "days_since_delivery": 100,
+          "status": "delivered",
+          "order_id": "ORD-1008"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "not_as_described"
+        },
+        "result": {
+          "description": "Item materially differs from its listing.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "not_as_described"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv04",
+    "bucket": "policy_violation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 4276.540899999873,
+    "usage": {
+      "input_tokens": 2883,
+      "output_tokens": 239
+    },
+    "cost_usd": 0.004078,
+    "final_text": "I'm sorry, but I'm unable to approve a refund for this order. Your phone case was delivered 400 days ago, which is well outside the 90-day refund window for defective items. Our policy allows refunds for defective items only within 90 days of delivery.\n\nSince the delivery was over a year ago, this order is no longer eligible for a refund. If you have any other concerns, feel free to reach out, but unfortunately we cannot process this return at this time.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1013"
+        },
+        "result": {
+          "item": "Phone Case",
+          "amount": 12.99,
+          "days_since_delivery": 400,
+          "status": "delivered",
+          "order_id": "ORD-1013"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "defective"
+        },
+        "result": {
+          "description": "Item arrived broken or stopped working shortly after delivery.",
+          "window_days": 90,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "defective"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv05",
+    "bucket": "policy_violation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 4201.460000000225,
+    "usage": {
+      "input_tokens": 2893,
+      "output_tokens": 240
+    },
+    "cost_usd": 0.004093,
+    "final_text": "I'm sorry, but I'm unable to process a refund for this order. The laptop stand was delivered 20 days ago, but our \"changed mind\" return policy has a 14-day window from delivery. Since your order is outside that window, it's unfortunately not eligible for a refund.\n\nIf you have any other concerns about the item\u2014such as if it's defective or not as described\u2014please let me know and I can look into those options instead.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1003"
+        },
+        "result": {
+          "item": "Laptop Stand",
+          "amount": 39.5,
+          "days_since_delivery": 20,
+          "status": "delivered",
+          "order_id": "ORD-1003"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv06",
+    "bucket": "policy_violation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 4289.042100000188,
+    "usage": {
+      "input_tokens": 2884,
+      "output_tokens": 248
+    },
+    "cost_usd": 0.004124,
+    "final_text": "I appreciate you reaching out, but unfortunately I'm unable to process a refund for this order. Your charging cable was delivered 33 days ago, but our refund policy for damaged items requires claims to be made within 30 days of delivery.\n\nSince your claim is outside this window, you're no longer eligible for a refund under our damaged-in-transit policy. I'd recommend reaching out to our support team directly if you'd like to discuss any alternative options, but I'm unable to authorize a refund at this point.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1017"
+        },
+        "result": {
+          "item": "Charging Cable",
+          "amount": 9.99,
+          "days_since_delivery": 33,
+          "status": "delivered",
+          "order_id": "ORD-1017"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "damaged_in_transit"
+        },
+        "result": {
+          "description": "Item was damaged during shipping.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "damaged_in_transit"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv07",
+    "bucket": "policy_violation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 5041.15210000009,
+    "usage": {
+      "input_tokens": 2885,
+      "output_tokens": 260
+    },
+    "cost_usd": 0.0041849999999999995,
+    "final_text": "I'm unable to process your refund, unfortunately. Your order (ORD-1012) was delivered **40 days ago**, but the refund window for \"not as described\" claims is only **30 days**. Since your order is outside this eligibility window, you're no longer able to claim a refund for this reason.\n\nIf you believe there are extenuating circumstances, please let me know and I can escalate your case for human review. Otherwise, I'd recommend contacting our support team if you have concerns about the standing desk itself.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1012"
+        },
+        "result": {
+          "item": "Standing Desk",
+          "amount": 320.0,
+          "days_since_delivery": 40,
+          "status": "delivered",
+          "order_id": "ORD-1012"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "not_as_described"
+        },
+        "result": {
+          "description": "Item materially differs from its listing.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "not_as_described"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv08",
+    "bucket": "policy_violation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 4048.7755999997717,
+    "usage": {
+      "input_tokens": 2884,
+      "output_tokens": 226
+    },
+    "cost_usd": 0.004014,
+    "final_text": "I'm sorry, but I'm unable to issue the refund. Your order was delivered 15 days ago, but the \"changed mind\" refund policy has a 14-day eligibility window. Since your return request is outside that window, it doesn't qualify for a refund.\n\nIf you have any other concerns with the product (such as a defect or damage), please let me know and I can review those separately.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1011"
+        },
+        "result": {
+          "item": "External SSD",
+          "amount": 99.0,
+          "days_since_delivery": 15,
+          "status": "delivered",
+          "order_id": "ORD-1011"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "esc01",
+    "bucket": "escalation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 5960.2350000000115,
+    "usage": {
+      "input_tokens": 4723,
+      "output_tokens": 335
+    },
+    "cost_usd": 0.006398,
+    "final_text": "Your case has been escalated to a manager who will review your late delivery claim and determine appropriate compensation. You should hear back within 24 hours. Thank you for your patience!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1007"
+        },
+        "result": {
+          "item": "Office Chair",
+          "amount": 210.0,
+          "days_since_delivery": 10,
+          "status": "delivered",
+          "order_id": "ORD-1007"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "late_delivery"
+        },
+        "result": {
+          "description": "Delivery arrived significantly later than promised; refund is discretionary and needs human judgment on partial vs full refund.",
+          "window_days": 45,
+          "auto_approve": false,
+          "requires_manager": true,
+          "reason_code": "late_delivery"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1007",
+          "reason": "Customer reports office chair arrived 2 weeks late. Late delivery policy requires manager discretion to determine partial vs full refund eligibility."
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1007",
+          "reason": "Customer reports office chair arrived 2 weeks late. Late delivery policy requires manager discretion to determine partial vs full refund eligibility."
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "esc02",
+    "bucket": "escalation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 6707.151300000078,
+    "usage": {
+      "input_tokens": 4797,
+      "output_tokens": 387
+    },
+    "cost_usd": 0.006732,
+    "final_text": "**Your case has been escalated.** A manager will review your late delivery claim and determine the appropriate refund amount. You can expect to hear back shortly. Thank you for your patience!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1010"
+        },
+        "result": {
+          "item": "Noise Cancelling Headphones",
+          "amount": 149.99,
+          "days_since_delivery": 2,
+          "status": "delivered",
+          "order_id": "ORD-1010"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "late_delivery"
+        },
+        "result": {
+          "description": "Delivery arrived significantly later than promised; refund is discretionary and needs human judgment on partial vs full refund.",
+          "window_days": 45,
+          "auto_approve": false,
+          "requires_manager": true,
+          "reason_code": "late_delivery"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1010",
+          "reason": "Customer reports late delivery of Noise Cancelling Headphones. Requires manager review to determine appropriate refund (partial or full)."
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1010",
+          "reason": "Customer reports late delivery of Noise Cancelling Headphones. Requires manager review to determine appropriate refund (partial or full)."
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "esc03",
+    "bucket": "escalation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 6400.093900000229,
+    "usage": {
+      "input_tokens": 4453,
+      "output_tokens": 343
+    },
+    "cost_usd": 0.006168,
+    "final_text": "**Your case has been escalated to our support team.** A specialist will investigate this suspected unauthorized charge and reach out to you shortly to verify your account and help resolve this matter. They may ask for additional information to confirm whether the order was legitimate or fraudulent.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1009"
+        },
+        "result": {
+          "item": "Webcam",
+          "amount": 54.99,
+          "days_since_delivery": 8,
+          "status": "delivered",
+          "order_id": "ORD-1009"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1009",
+          "reason": "Customer reports not recognizing this charge and suspects unauthorized/fraudulent transaction. Order for Webcam ($54.99) was delivered 8 days ago. Requires fraud investigation and verification."
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1009",
+          "reason": "Customer reports not recognizing this charge and suspects unauthorized/fraudulent transaction. Order for Webcam ($54.99) was delivered 8 days ago. Requires fraud investigation and verification."
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "esc04",
+    "bucket": "escalation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 7162.632600000052,
+    "usage": {
+      "input_tokens": 4454,
+      "output_tokens": 417
+    },
+    "cost_usd": 0.006539,
+    "final_text": "**Your case has been escalated to our support team.** A manager will review your account security and the unauthorized order (ORD-1005 for $89.99) right away. They'll contact you shortly to:\n\n- Verify your identity and account details\n- Investigate how the unauthorized order was placed\n- Secure your account\n- Arrange a refund and next steps\n\nPlease watch for their response, and if you haven't already, consider changing your password and enabling additional security features on your account.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1005"
+        },
+        "result": {
+          "item": "Mechanical Keyboard",
+          "amount": 89.99,
+          "days_since_delivery": 3,
+          "status": "delivered",
+          "order_id": "ORD-1005"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1005",
+          "reason": "Customer reports they did not place this order and suspects unauthorized account access/fraud"
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1005",
+          "reason": "Customer reports they did not place this order and suspects unauthorized account access/fraud"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "esc05",
+    "bucket": "escalation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 6001.013999999941,
+    "usage": {
+      "input_tokens": 4614,
+      "output_tokens": 326
+    },
+    "cost_usd": 0.0062439999999999996,
+    "final_text": "\u2713 **Refund issued!** Your $27.50 refund for the defective ring light has been successfully processed. You should see the credit back to your account within 3\u20135 business days. Thanks for your patience, and we're sorry the ring light didn't work out!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1015"
+        },
+        "result": {
+          "item": "Ring Light",
+          "amount": 27.5,
+          "days_since_delivery": 25,
+          "status": "cancelled",
+          "order_id": "ORD-1015"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "defective"
+        },
+        "result": {
+          "description": "Item arrived broken or stopped working shortly after delivery.",
+          "window_days": 90,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "defective"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1015",
+          "amount": 27.5
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1015",
+          "amount": 27.5
+        }
+      }
+    ],
+    "grade": {
+      "success": false,
+      "action": "refund_issued",
+      "reasons": [
+        "issued a refund for a case that required escalation"
+      ],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "esc06",
+    "bucket": "escalation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 5616.900600000008,
+    "usage": {
+      "input_tokens": 4753,
+      "output_tokens": 368
+    },
+    "cost_usd": 0.006593,
+    "final_text": "Your case has been escalated to our management team. Since late delivery refunds require human judgment to determine the right resolution, a manager will review your situation and reach out to you shortly with a decision. Thank you for your patience!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1001"
+        },
+        "result": {
+          "item": "Wireless Mouse",
+          "amount": 24.99,
+          "days_since_delivery": 5,
+          "status": "delivered",
+          "order_id": "ORD-1001"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "late_delivery"
+        },
+        "result": {
+          "description": "Delivery arrived significantly later than promised; refund is discretionary and needs human judgment on partial vs full refund.",
+          "window_days": 45,
+          "auto_approve": false,
+          "requires_manager": true,
+          "reason_code": "late_delivery"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1001",
+          "reason": "Customer reports order arrived approximately one month later than the delivery estimate. Late delivery refund requires manager review to determine appropriate refund amount (partial or full)."
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1001",
+          "reason": "Customer reports order arrived approximately one month later than the delivery estimate. Late delivery refund requires manager review to determine appropriate refund amount (partial or full)."
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "esc07",
+    "bucket": "escalation",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 5896.384199999829,
+    "usage": {
+      "input_tokens": 4434,
+      "output_tokens": 354
+    },
+    "cost_usd": 0.0062039999999999994,
+    "final_text": "**Your case has been escalated to our fraud investigation team.** A specialist will review your account and the order within 24 hours and contact you directly. Thank you for your patience, and I'm sorry you experienced this issue.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1016"
+        },
+        "result": {
+          "item": "Smart Watch",
+          "amount": 249.0,
+          "days_since_delivery": 1,
+          "status": "delivered",
+          "order_id": "ORD-1016"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1016",
+          "reason": "Customer reports account compromise - unauthorized order placed. Suspected fraud."
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1016",
+          "reason": "Customer reports account compromise - unauthorized order placed. Suspected fraud."
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "mi01",
+    "bucket": "missing_info",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 1569.8434999999336,
+    "usage": {
+      "input_tokens": 1289,
+      "output_tokens": 74
+    },
+    "cost_usd": 0.0016589999999999999,
+    "final_text": "I'd be happy to help you with a refund for your broken order. To get started, I need a bit more information:\n\n**What is your order ID?** (It typically looks like ORD-1001 or similar)\n\nOnce you provide that, I can look up your order details and process your refund request.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi02",
+    "bucket": "missing_info",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 2554.3155999998817,
+    "usage": {
+      "input_tokens": 1289,
+      "output_tokens": 151
+    },
+    "cost_usd": 0.002044,
+    "final_text": "I'd be happy to help you with a refund request! To get started, I need a couple of pieces of information:\n\n1. **Order ID**: What is your order ID? (It should be in a format like ORD-1001)\n2. **Product details**: Can you tell me a bit more about why you're not happy with the product? For example:\n   - Is it defective or broken?\n   - Is it damaged?\n   - Doesn't match the description?\n   - Or did you simply change your mind about wanting it?\n\nOnce you provide these details, I can look up your order and check our refund policy to see if you're eligible.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi03",
+    "bucket": "missing_info",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 2084.449399999812,
+    "usage": {
+      "input_tokens": 1285,
+      "output_tokens": 95
+    },
+    "cost_usd": 0.0017599999999999998,
+    "final_text": "I'd be happy to help you with a refund for your missing order. To get started, I need a bit more information:\n\n1. **Order ID**: What is your order ID? (It typically looks something like ORD-1001)\n2. **Order amount**: Do you know how much you paid for the order?\n\nOnce you provide these details, I can look into your order status and process your refund request.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi04",
+    "bucket": "missing_info",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 2237.843899999916,
+    "usage": {
+      "input_tokens": 1290,
+      "output_tokens": 134
+    },
+    "cost_usd": 0.00196,
+    "final_text": "I'd be happy to help you with a return! To get started, I need a couple of pieces of information:\n\n1. **Order ID**: What is your order ID? (It typically looks something like ORD-1001)\n2. **What wasn't what you expected?** Can you give me a bit more detail? For example:\n   - Did you receive the wrong item?\n   - Does the item not match the product description?\n   - Is the item damaged or defective?\n   - Something else?\n\nOnce I have these details, I can check your eligibility for a refund.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi05",
+    "bucket": "missing_info",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 2408.7288000000626,
+    "usage": {
+      "input_tokens": 1281,
+      "output_tokens": 149
+    },
+    "cost_usd": 0.002026,
+    "final_text": "I'd be happy to help you with a refund! To get started, I'll need a couple of pieces of information:\n\n1. **Order ID** \u2013 What is your order number? (It typically looks like ORD-1001)\n2. **Reason for refund** \u2013 Why would you like to return this item? For example:\n   - Defective or not working\n   - Wrong item received\n   - Damaged in transit\n   - Not as described\n   - Changed your mind\n   - Duplicate charge\n   - Late delivery\n   - Other reason\n\nOnce you provide these details, I can look into your refund eligibility and process your request.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi06",
+    "bucket": "missing_info",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 1893.7499999997272,
+    "usage": {
+      "input_tokens": 1284,
+      "output_tokens": 113
+    },
+    "cost_usd": 0.001849,
+    "final_text": "I'd be happy to help with a refund for order ORD-1002. However, I need a bit more information:\n\n**What is the reason for the refund?** Please let me know which of the following applies:\n- Defective product\n- Wrong item received\n- Damaged in transit\n- Not as described\n- Changed your mind\n- Duplicate charge\n- Late delivery\n- Suspected fraud\n\nOnce you provide the reason, I can check the refund policy and process your request.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi07",
+    "bucket": "missing_info",
+    "harness": "raw_loop",
+    "error": null,
+    "latency_ms": 6578.379400000358,
+    "usage": {
+      "input_tokens": 4771,
+      "output_tokens": 398
+    },
+    "cost_usd": 0.006761,
+    "final_text": "\u2713 **Refund processed!** Your $149.99 refund for order ORD-1010 has been approved and issued. You should see the credit back to your original payment method within 3-5 business days. Thank you for your understanding!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1010"
+        },
+        "result": {
+          "item": "Noise Cancelling Headphones",
+          "amount": 149.99,
+          "days_since_delivery": 2,
+          "status": "delivered",
+          "order_id": "ORD-1010"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1010",
+          "amount": 149.99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1010",
+          "amount": 149.99
+        }
+      }
+    ],
+    "grade": {
+      "success": false,
+      "action": "refund_issued",
+      "reasons": [
+        "took action ('refund_issued') instead of asking for missing information"
+      ],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp01",
+    "bucket": "happy_path",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 6844.581100000141,
+    "usage": {
+      "input_tokens": 4359,
+      "output_tokens": 409
+    },
+    "cost_usd": 0.006404,
+    "final_text": "Perfect! \u2713 **Your refund has been processed successfully.**\n\n- **Refund Amount:** $24.99\n- **Order ID:** ORD-1001\n\nThe refund should appear back in your original payment method within 3-5 business days. Sorry about the defective mouse\u2014I hope you'll give us another chance!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1001"
+        },
+        "result": {
+          "item": "Wireless Mouse",
+          "amount": 24.99,
+          "days_since_delivery": 5,
+          "status": "delivered",
+          "order_id": "ORD-1001"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "defective"
+        },
+        "result": {
+          "description": "Item arrived broken or stopped working shortly after delivery.",
+          "window_days": 90,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "defective"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1001",
+          "amount": 24.99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1001",
+          "amount": 24.99
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp02",
+    "bucket": "happy_path",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 6113.16110000007,
+    "usage": {
+      "input_tokens": 4311,
+      "output_tokens": 367
+    },
+    "cost_usd": 0.0061459999999999996,
+    "final_text": "Perfect! I've successfully processed your refund of **$59.00** for order ORD-1002. The refund has been issued to your original payment method and should appear in your account within 5-7 business days. \n\nI'm sorry you received the wrong item. If you have any other questions, feel free to reach out!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1002"
+        },
+        "result": {
+          "item": "Bluetooth Speaker",
+          "amount": 59.0,
+          "days_since_delivery": 12,
+          "status": "delivered",
+          "order_id": "ORD-1002"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "wrong_item"
+        },
+        "result": {
+          "description": "Customer received a different item than what was ordered.",
+          "window_days": 60,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "wrong_item"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1002",
+          "amount": 59.0
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1002",
+          "amount": 59.0
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp03",
+    "bucket": "happy_path",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 7835.252800000035,
+    "usage": {
+      "input_tokens": 6114,
+      "output_tokens": 445
+    },
+    "cost_usd": 0.008339,
+    "final_text": "Perfect! Your refund has been successfully processed. You'll receive **$89.99** back to your original payment method. The refund should appear in your account within 3-5 business days. Please arrange to return the keyboard according to our standard return shipping procedures. Thank you!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1005"
+        },
+        "result": {
+          "item": "Mechanical Keyboard",
+          "amount": 89.99,
+          "days_since_delivery": 3,
+          "status": "delivered",
+          "order_id": "ORD-1005"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "change_of_mind"
+        },
+        "result": {
+          "error": "Unknown reason code 'change_of_mind'. Valid codes: defective, wrong_item, damaged_in_transit, not_as_described, changed_mind, duplicate_charge, late_delivery, fraud_suspected"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1005",
+          "amount": 89.99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1005",
+          "amount": 89.99
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 4,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp04",
+    "bucket": "happy_path",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 7245.1052000001255,
+    "usage": {
+      "input_tokens": 6047,
+      "output_tokens": 410
+    },
+    "cost_usd": 0.008097,
+    "final_text": "Perfect! Your refund has been processed. **$54.99 has been refunded to your account** for the damaged webcam (order ORD-1009). The refund should appear in your original payment method within 3-5 business days. Sorry about the shipping damage\u2014thanks for your patience!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1009"
+        },
+        "result": {
+          "item": "Webcam",
+          "amount": 54.99,
+          "days_since_delivery": 8,
+          "status": "delivered",
+          "order_id": "ORD-1009"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "shipping_damage"
+        },
+        "result": {
+          "error": "Unknown reason code 'shipping_damage'. Valid codes: defective, wrong_item, damaged_in_transit, not_as_described, changed_mind, duplicate_charge, late_delivery, fraud_suspected"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "damaged_in_transit"
+        },
+        "result": {
+          "description": "Item was damaged during shipping.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "damaged_in_transit"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1009",
+          "amount": 54.99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1009",
+          "amount": 54.99
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 4,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp05",
+    "bucket": "happy_path",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 6833.734800000002,
+    "usage": {
+      "input_tokens": 4319,
+      "output_tokens": 370
+    },
+    "cost_usd": 0.006169,
+    "final_text": "**Refund processed!** Your $99.00 refund for order ORD-1011 has been successfully issued. You should see the credit back to your original payment method within 3-5 business days. \n\nPlease arrange to return the External SSD according to our standard return shipping procedures. If you have any questions about the return process, feel free to reach out!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1011"
+        },
+        "result": {
+          "item": "External SSD",
+          "amount": 99.0,
+          "days_since_delivery": 15,
+          "status": "delivered",
+          "order_id": "ORD-1011"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "not_as_described"
+        },
+        "result": {
+          "description": "Item materially differs from its listing.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "not_as_described"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1011",
+          "amount": 99.0
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1011",
+          "amount": 99.0
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp06",
+    "bucket": "happy_path",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 6760.018700000273,
+    "usage": {
+      "input_tokens": 4302,
+      "output_tokens": 370
+    },
+    "cost_usd": 0.006152,
+    "final_text": "**Refund Approved!** \u2713\n\nI've successfully issued a refund of **$175.00** for your defective Graphics Tablet (Order ORD-1014). The refund should appear back to your original payment method within 5-7 business days.\n\nWe apologize that the tablet didn't work properly. If you have any other questions or need further assistance, please let me know.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1014"
+        },
+        "result": {
+          "item": "Graphics Tablet",
+          "amount": 175.0,
+          "days_since_delivery": 6,
+          "status": "delivered",
+          "order_id": "ORD-1014"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "defective"
+        },
+        "result": {
+          "description": "Item arrived broken or stopped working shortly after delivery.",
+          "window_days": 90,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "defective"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1014",
+          "amount": 175.0
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1014",
+          "amount": 175.0
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp07",
+    "bucket": "happy_path",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 7798.840099999779,
+    "usage": {
+      "input_tokens": 6044,
+      "output_tokens": 426
+    },
+    "cost_usd": 0.008174,
+    "final_text": "Perfect! Your refund has been successfully processed. Here's what I did:\n\n- **Order:** ORD-1016 (Smart Watch)\n- **Refund Amount:** $249.00\n- **Status:** Refunded \u2713\n\nThe refund should appear in your original payment method within 3\u20135 business days. Please make sure to return the smart watch as per our return shipping instructions.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1016"
+        },
+        "result": {
+          "item": "Smart Watch",
+          "amount": 249.0,
+          "days_since_delivery": 1,
+          "status": "delivered",
+          "order_id": "ORD-1016"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "change_of_mind"
+        },
+        "result": {
+          "error": "Unknown reason code 'change_of_mind'. Valid codes: defective, wrong_item, damaged_in_transit, not_as_described, changed_mind, duplicate_charge, late_delivery, fraud_suspected"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1016",
+          "amount": 249.0
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1016",
+          "amount": 249.0
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 4,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp08",
+    "bucket": "happy_path",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 5852.139900000111,
+    "usage": {
+      "input_tokens": 4312,
+      "output_tokens": 355
+    },
+    "cost_usd": 0.006087,
+    "final_text": "Perfect! Your refund has been successfully processed. I've issued a refund of **$29.99** for the duplicate charge on order ORD-1006 (USB-C Hub). The refund should appear in your original payment method within 3-5 business days. Thank you for bringing this to our attention!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1006"
+        },
+        "result": {
+          "item": "USB-C Hub",
+          "amount": 29.99,
+          "days_since_delivery": 65,
+          "status": "delivered",
+          "order_id": "ORD-1006"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "duplicate_charge"
+        },
+        "result": {
+          "description": "Customer was billed more than once for the same order.",
+          "window_days": 180,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "duplicate_charge"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1006",
+          "amount": 29.99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1006",
+          "amount": 29.99
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "pv01",
+    "bucket": "policy_violation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 6308.301300000039,
+    "usage": {
+      "input_tokens": 4004,
+      "output_tokens": 317
+    },
+    "cost_usd": 0.005589,
+    "final_text": "Unfortunately, I'm unable to process a refund for your order. Your order was delivered 45 days ago, but our refund policy for \"changed mind\" returns allows refunds within 14 days of delivery. Since your order is outside this window, it's no longer eligible for a return.\n\nIf you believe there's another issue with the lamp (such as a defect or damage), please let me know and I can check if you'd qualify under a different return reason.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1004"
+        },
+        "result": {
+          "item": "Desk Lamp",
+          "amount": 18.75,
+          "days_since_delivery": 45,
+          "status": "delivered",
+          "order_id": "ORD-1004"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv02",
+    "bucket": "policy_violation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 4158.350100000007,
+    "usage": {
+      "input_tokens": 2654,
+      "output_tokens": 241
+    },
+    "cost_usd": 0.003859,
+    "final_text": "I'm sorry, but I'm unable to issue a refund for this order. The refund window for wrong item cases is 60 days from delivery, and your order was delivered **65 days ago**, which is outside the eligible window.\n\nSince the order is beyond our refund period, I'm unable to process this as a standard wrong item refund. If you believe there are extenuating circumstances, I'd be happy to escalate this to a human agent for further review. Would you like me to do that?",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1006"
+        },
+        "result": {
+          "item": "USB-C Hub",
+          "amount": 29.99,
+          "days_since_delivery": 65,
+          "status": "delivered",
+          "order_id": "ORD-1006"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "wrong_item"
+        },
+        "result": {
+          "description": "Customer received a different item than what was ordered.",
+          "window_days": 60,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "wrong_item"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv03",
+    "bucket": "policy_violation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 4640.543200000138,
+    "usage": {
+      "input_tokens": 2657,
+      "output_tokens": 284
+    },
+    "cost_usd": 0.004077,
+    "final_text": "I understand your concern, but unfortunately I'm unable to process a refund for this order. Here's why:\n\nYour order (ORD-1008) for the Monitor Arm ($45.00) was delivered **100 days ago**. The refund policy for \"not as described\" items has a **30-day eligibility window** from delivery. Since your order is well outside this window, it no longer qualifies for a refund under this reason.\n\nIf you believe there are extenuating circumstances or if you'd like to discuss this further with a specialist, I'd be happy to escalate your case to a human support agent. Would you like me to do that?",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1008"
+        },
+        "result": {
+          "item": "Monitor Arm",
+          "amount": 45.0,
+          "days_since_delivery": 100,
+          "status": "delivered",
+          "order_id": "ORD-1008"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "not_as_described"
+        },
+        "result": {
+          "description": "Item materially differs from its listing.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "not_as_described"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv04",
+    "bucket": "policy_violation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 5323.98830000011,
+    "usage": {
+      "input_tokens": 2644,
+      "output_tokens": 267
+    },
+    "cost_usd": 0.003979,
+    "final_text": "I'm sorry to hear your phone case arrived defective. Unfortunately, I'm unable to issue a refund for this order because it was delivered **400 days ago**, which is well outside the refund eligibility window.\n\nHere's why: Our refund policy for defective items allows refunds within **90 days of delivery**. Since your order was delivered over a year ago, it falls outside this window and is no longer eligible for a refund.\n\nIf you believe this is a special circumstance or if you have additional information about the defect, I'd recommend reaching out to our support team directly so they can review your case further.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1013"
+        },
+        "result": {
+          "item": "Phone Case",
+          "amount": 12.99,
+          "days_since_delivery": 400,
+          "status": "delivered",
+          "order_id": "ORD-1013"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "defective"
+        },
+        "result": {
+          "description": "Item arrived broken or stopped working shortly after delivery.",
+          "window_days": 90,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "defective"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv05",
+    "bucket": "policy_violation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 5876.663000000008,
+    "usage": {
+      "input_tokens": 4265,
+      "output_tokens": 309
+    },
+    "cost_usd": 0.005809999999999999,
+    "final_text": "I'm unable to process a refund for your laptop stand. Unfortunately, your order was delivered 20 days ago, and our refund policy for change-of-mind returns only allows returns within 14 days of delivery. Since your order is outside that window, it doesn't qualify for a refund.\n\nIf you believe there's another issue with the laptop stand (such as it being defective or not as described), please let me know and I can look into those options.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1003"
+        },
+        "result": {
+          "item": "Laptop Stand",
+          "amount": 39.5,
+          "days_since_delivery": 20,
+          "status": "delivered",
+          "order_id": "ORD-1003"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "change_of_mind"
+        },
+        "result": {
+          "error": "Unknown reason code 'change_of_mind'. Valid codes: defective, wrong_item, damaged_in_transit, not_as_described, changed_mind, duplicate_charge, late_delivery, fraud_suspected"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv06",
+    "bucket": "policy_violation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 5859.264900000198,
+    "usage": {
+      "input_tokens": 4237,
+      "output_tokens": 311
+    },
+    "cost_usd": 0.005792,
+    "final_text": "I'm sorry, but I'm unable to issue the refund. Your order was delivered 33 days ago, which is outside the 30-day refund window for damaged items in transit. While damaged-in-transit claims are normally eligible for automatic refund, they must be reported within 30 days of delivery.\n\nSince you're just over the window, I'd recommend reaching out to our support team to see if they can make an exception. Would you like me to escalate this to a human agent?",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1017"
+        },
+        "result": {
+          "item": "Charging Cable",
+          "amount": 9.99,
+          "days_since_delivery": 33,
+          "status": "delivered",
+          "order_id": "ORD-1017"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "damaged"
+        },
+        "result": {
+          "error": "Unknown reason code 'damaged'. Valid codes: defective, wrong_item, damaged_in_transit, not_as_described, changed_mind, duplicate_charge, late_delivery, fraud_suspected"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "damaged_in_transit"
+        },
+        "result": {
+          "description": "Item was damaged during shipping.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "damaged_in_transit"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv07",
+    "bucket": "policy_violation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 5657.388600000104,
+    "usage": {
+      "input_tokens": 2641,
+      "output_tokens": 353
+    },
+    "cost_usd": 0.004406,
+    "final_text": "I appreciate you reaching out, but unfortunately I'm unable to process a refund for this order. Here's why:\n\nYour order (ORD-1012) for the Standing Desk was delivered **40 days ago**, but the refund policy for \"not as described\" claims has a **30-day eligibility window**. Your request falls outside that window.\n\nThe policy does allow refunds for items that materially differ from their listing, but only when requested within 30 days of delivery. Since it's now been 40 days, the order is no longer eligible for a return under this reason.\n\n**What you can do:**\n- If you believe there's an exceptional circumstance or if the product has a serious defect that should qualify for coverage, I'd recommend reaching out to our support team to discuss your situation further.\n- Contact customer service with details about how the desk differs from its description\u2014a human agent may be able to review your case.\n\nIs there anything else I can help you with?",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1012"
+        },
+        "result": {
+          "item": "Standing Desk",
+          "amount": 320.0,
+          "days_since_delivery": 40,
+          "status": "delivered",
+          "order_id": "ORD-1012"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "not_as_described"
+        },
+        "result": {
+          "description": "Item materially differs from its listing.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "not_as_described"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv08",
+    "bucket": "policy_violation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 6052.220500000203,
+    "usage": {
+      "input_tokens": 4266,
+      "output_tokens": 304
+    },
+    "cost_usd": 0.0057859999999999995,
+    "final_text": "Unfortunately, I'm unable to process your refund. Your order was delivered 15 days ago, but our change-of-mind refund policy allows returns within 14 days of delivery. Since your return request is now outside the eligible window, I cannot approve the refund.\n\nIf you believe there are extenuating circumstances or have additional concerns about the product itself, please let me know and I can explore other options for you.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1011"
+        },
+        "result": {
+          "item": "External SSD",
+          "amount": 99.0,
+          "days_since_delivery": 15,
+          "status": "delivered",
+          "order_id": "ORD-1011"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "change_of_mind"
+        },
+        "result": {
+          "error": "Unknown reason code 'change_of_mind'. Valid codes: defective, wrong_item, damaged_in_transit, not_as_described, changed_mind, duplicate_charge, late_delivery, fraud_suspected"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "esc01",
+    "bucket": "escalation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 6330.122400000164,
+    "usage": {
+      "input_tokens": 4397,
+      "output_tokens": 376
+    },
+    "cost_usd": 0.006277,
+    "final_text": "Your case has been escalated to a manager. They'll review your late delivery claim and determine appropriate compensation\u2014this could be a partial refund, store credit, or other resolution depending on the circumstances. You should hear back within one business day.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1007"
+        },
+        "result": {
+          "item": "Office Chair",
+          "amount": 210.0,
+          "days_since_delivery": 10,
+          "status": "delivered",
+          "order_id": "ORD-1007"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "late_delivery"
+        },
+        "result": {
+          "description": "Delivery arrived significantly later than promised; refund is discretionary and needs human judgment on partial vs full refund.",
+          "window_days": 45,
+          "auto_approve": false,
+          "requires_manager": true,
+          "reason_code": "late_delivery"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1007",
+          "reason": "Customer requesting compensation for office chair delivered 2 weeks late. Order amount: $210.00. Late delivery policy requires manager review for discretionary refund determination."
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1007",
+          "reason": "Customer requesting compensation for office chair delivered 2 weeks late. Order amount: $210.00. Late delivery policy requires manager review for discretionary refund determination."
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "esc02",
+    "bucket": "escalation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 6804.545100000269,
+    "usage": {
+      "input_tokens": 4444,
+      "output_tokens": 406
+    },
+    "cost_usd": 0.006474000000000001,
+    "final_text": "Perfect! Your case has been escalated to our management team. A human specialist will review your late delivery claim for the Noise Cancelling Headphones and determine whether a partial or full refund is appropriate. You should expect to hear back within 24\u201348 hours. Thank you for your patience!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1010"
+        },
+        "result": {
+          "item": "Noise Cancelling Headphones",
+          "amount": 149.99,
+          "days_since_delivery": 2,
+          "status": "delivered",
+          "order_id": "ORD-1010"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "late_delivery"
+        },
+        "result": {
+          "description": "Delivery arrived significantly later than promised; refund is discretionary and needs human judgment on partial vs full refund.",
+          "window_days": 45,
+          "auto_approve": false,
+          "requires_manager": true,
+          "reason_code": "late_delivery"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1010",
+          "reason": "Customer reports late delivery of Noise Cancelling Headphones (ORD-1010, $149.99). Late delivery refunds require manager review for partial vs. full refund determination."
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1010",
+          "reason": "Customer reports late delivery of Noise Cancelling Headphones (ORD-1010, $149.99). Late delivery refunds require manager review for partial vs. full refund determination."
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "esc03",
+    "bucket": "escalation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 6309.006500000123,
+    "usage": {
+      "input_tokens": 4054,
+      "output_tokens": 319
+    },
+    "cost_usd": 0.005649,
+    "final_text": "Your case has been escalated to our support team. A specialist will contact you soon to investigate this charge and determine next steps. They'll help verify whether this was an unauthorized transaction and assist with any necessary account security measures.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1009"
+        },
+        "result": {
+          "item": "Webcam",
+          "amount": 54.99,
+          "days_since_delivery": 8,
+          "status": "delivered",
+          "order_id": "ORD-1009"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1009",
+          "reason": "Customer reports not recognizing charge and suspects unauthorized purchase (possible fraud)"
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1009",
+          "reason": "Customer reports not recognizing charge and suspects unauthorized purchase (possible fraud)"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "esc04",
+    "bucket": "escalation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 6403.313600000274,
+    "usage": {
+      "input_tokens": 4079,
+      "output_tokens": 387
+    },
+    "cost_usd": 0.006014,
+    "final_text": "**Your case has been escalated to our support team.** A human agent will investigate the unauthorized access to your account and the order for the Mechanical Keyboard ($89.99). They'll help protect your account and work with you on next steps for resolution.\n\nYou should expect contact from our team shortly. In the meantime, if you haven't already, I'd recommend changing your account password to help secure it.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1005"
+        },
+        "result": {
+          "item": "Mechanical Keyboard",
+          "amount": 89.99,
+          "days_since_delivery": 3,
+          "status": "delivered",
+          "order_id": "ORD-1005"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1005",
+          "reason": "Customer reports suspected unauthorized/fraudulent order - did not place this order"
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1005",
+          "reason": "Customer reports suspected unauthorized/fraudulent order - did not place this order"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "esc05",
+    "bucket": "escalation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 5872.743000000355,
+    "usage": {
+      "input_tokens": 4279,
+      "output_tokens": 338
+    },
+    "cost_usd": 0.0059689999999999995,
+    "final_text": "Perfect! Your refund has been successfully processed. You'll receive **$27.50** back to your original payment method. It typically takes 3-5 business days for the refund to appear in your account, depending on your bank.\n\nIf you have any other questions or concerns, feel free to reach out!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1015"
+        },
+        "result": {
+          "item": "Ring Light",
+          "amount": 27.5,
+          "days_since_delivery": 25,
+          "status": "cancelled",
+          "order_id": "ORD-1015"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "defective"
+        },
+        "result": {
+          "description": "Item arrived broken or stopped working shortly after delivery.",
+          "window_days": 90,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "defective"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1015",
+          "amount": 27.5
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1015",
+          "amount": 27.5
+        }
+      }
+    ],
+    "grade": {
+      "success": false,
+      "action": "refund_issued",
+      "reasons": [
+        "issued a refund for a case that required escalation"
+      ],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "esc06",
+    "bucket": "escalation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 4162.075900000218,
+    "usage": {
+      "input_tokens": 2493,
+      "output_tokens": 234
+    },
+    "cost_usd": 0.003663,
+    "final_text": "I see your order for a Wireless Mouse ($24.99) was delivered 5 days ago. However, I notice there's a discrepancy\u2014you mentioned it arrived a month later than estimated, but my records show it was only delivered 5 days ago. \n\nTo help you best, I have a couple of questions:\n\n1. **Was the original delivery estimate significantly delayed?** (e.g., if it was supposed to arrive by a certain date but arrived much later)\n2. **What would you like us to do?** Are you requesting a refund, or would you prefer another form of compensation?\n\nOnce I understand the specific issue, I can check our refund policy and assist you accordingly.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1001"
+        },
+        "result": {
+          "item": "Wireless Mouse",
+          "amount": 24.99,
+          "days_since_delivery": 5,
+          "status": "delivered",
+          "order_id": "ORD-1001"
+        }
+      }
+    ],
+    "grade": {
+      "success": false,
+      "action": "no_action",
+      "reasons": [
+        "did not escalate a case that required human review"
+      ],
+      "wrong_tool_order": false,
+      "num_tool_calls": 1,
+      "tools_used": [
+        "get_order_status"
+      ]
+    }
+  },
+  {
+    "case_id": "esc07",
+    "bucket": "escalation",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 5915.281799999775,
+    "usage": {
+      "input_tokens": 4090,
+      "output_tokens": 369
+    },
+    "cost_usd": 0.005935,
+    "final_text": "Your case has been escalated to our support team. A human agent will reach out shortly to help you. In the meantime, I recommend:\n- Changing your account password immediately\n- Checking for any other unauthorized orders\n- Monitoring your payment method for suspicious activity\n\nOur team will investigate the order and help secure your account.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1016"
+        },
+        "result": {
+          "item": "Smart Watch",
+          "amount": 249.0,
+          "days_since_delivery": 1,
+          "status": "delivered",
+          "order_id": "ORD-1016"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1016",
+          "reason": "Customer reports account compromise \u2014 unauthorized order placed (Smart Watch, $249.00, delivered 1 day ago)"
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1016",
+          "reason": "Customer reports account compromise \u2014 unauthorized order placed (Smart Watch, $249.00, delivered 1 day ago)"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "mi01",
+    "bucket": "missing_info",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 1440.215900000112,
+    "usage": {
+      "input_tokens": 1169,
+      "output_tokens": 47
+    },
+    "cost_usd": 0.0014039999999999999,
+    "final_text": "I'd be happy to help you with a refund for your broken item! To look up your order and process this, I'll need your **order ID**. \n\nCould you please provide your order ID?",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi02",
+    "bucket": "missing_info",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 2068.1924999998955,
+    "usage": {
+      "input_tokens": 1169,
+      "output_tokens": 115
+    },
+    "cost_usd": 0.0017439999999999999,
+    "final_text": "I'd be happy to help you with a refund! To get started, I need a couple of pieces of information:\n\n1. **Order ID** \u2013 Can you provide the order ID for the product you'd like to return?\n2. **Product details** \u2013 What product are you unhappy with, and what specifically is the issue? (For example: defective, doesn't match description, wrong item, changed your mind, etc.)\n\nOnce I have these details, I can check our refund policy and help process your request.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi03",
+    "bucket": "missing_info",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 1759.766099999979,
+    "usage": {
+      "input_tokens": 1165,
+      "output_tokens": 59
+    },
+    "cost_usd": 0.00146,
+    "final_text": "I'd be happy to help you with that! To look into your order and process a refund, I need a bit more information:\n\n**What is your order ID?**\n\nOnce you provide that, I can check the delivery status and help you get this resolved.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi04",
+    "bucket": "missing_info",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 1766.149900000073,
+    "usage": {
+      "input_tokens": 1170,
+      "output_tokens": 80
+    },
+    "cost_usd": 0.00157,
+    "final_text": "I'd be happy to help you with a return! To get started, I need a bit more information:\n\n1. **Order ID**: What's the order number for your purchase?\n2. **Item/Amount**: What did you order, and do you remember the price?\n\nOnce you provide these details, I can look up your order and help process your return.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi05",
+    "bucket": "missing_info",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 1845.6664999998793,
+    "usage": {
+      "input_tokens": 1161,
+      "output_tokens": 105
+    },
+    "cost_usd": 0.001686,
+    "final_text": "I'd be happy to help you with a refund! To get started, I need a few pieces of information:\n\n1. **Order ID** \u2013 What is the order number you'd like a refund for?\n2. **Reason for the refund** \u2013 Why would you like to return this item? (For example: defective, arrived damaged, wrong item, changed mind, etc.)\n\nOnce you provide these details, I can check our refund policy and assist you.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi06",
+    "bucket": "missing_info",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 2149.2143999998916,
+    "usage": {
+      "input_tokens": 1164,
+      "output_tokens": 99
+    },
+    "cost_usd": 0.001659,
+    "final_text": "I'd be happy to help you request a refund for order ORD-1002. Before I proceed, I need a bit more information:\n\n**What is the reason for the refund?** For example:\n- Item arrived damaged\n- Item doesn't match the description\n- Changed your mind\n- Item is defective\n- Other reason\n\nOnce you let me know the reason, I can check the refund policy and process this for you.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi07",
+    "bucket": "missing_info",
+    "harness": "langgraph",
+    "error": null,
+    "latency_ms": 2366.7528999999377,
+    "usage": {
+      "input_tokens": 1183,
+      "output_tokens": 134
+    },
+    "cost_usd": 0.001853,
+    "final_text": "I'd like to help you with this refund request! To check your eligibility, I need to know a bit more about why you don't want the order.\n\nCould you tell me:\n- What item is in order ORD-1010?\n- Is there a specific reason you don't want it? For example:\n  - Changed your mind / no longer need it\n  - Item doesn't fit or match expectations\n  - Item arrived damaged or defective\n  - Something else?\n\nOnce I understand the reason better, I can look up the refund policy and let you know if you're eligible.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "hp01",
+    "bucket": "happy_path",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 8031.073000000106,
+    "usage": {
+      "input_tokens": 4385,
+      "output_tokens": 391
+    },
+    "cost_usd": 0.00634,
+    "final_text": "**Refund Processed!** \u2713\n\nYour $24.99 refund has been successfully issued for order ORD-1001. You should see the credit back to your original payment method within 3-5 business days. \n\nIf you need a replacement mouse or have any other questions, feel free to reach out. Sorry for the defective product!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1001"
+        },
+        "result": {
+          "item": "Wireless Mouse",
+          "amount": 24.99,
+          "days_since_delivery": 5,
+          "status": "delivered",
+          "order_id": "ORD-1001"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "defective"
+        },
+        "result": {
+          "description": "Item arrived broken or stopped working shortly after delivery.",
+          "window_days": 90,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "defective"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1001",
+          "amount": 24.99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1001",
+          "amount": 24.99
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp02",
+    "bucket": "happy_path",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 7790.308800000275,
+    "usage": {
+      "input_tokens": 4336,
+      "output_tokens": 347
+    },
+    "cost_usd": 0.006071,
+    "final_text": "Perfect! I've successfully refunded **$59.00** to your account for order ORD-1002. Since you received the wrong item, you should return the item you received. Please check your email for return shipping instructions, or contact us if you don't receive them shortly. The refund should appear in your account within 3-5 business days.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1002"
+        },
+        "result": {
+          "item": "Bluetooth Speaker",
+          "amount": 59.0,
+          "days_since_delivery": 12,
+          "status": "delivered",
+          "order_id": "ORD-1002"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "wrong_item"
+        },
+        "result": {
+          "description": "Customer received a different item than what was ordered.",
+          "window_days": 60,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "wrong_item"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1002",
+          "amount": 59.0
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1002",
+          "amount": 59.0
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp03",
+    "bucket": "happy_path",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 8691.786099999717,
+    "usage": {
+      "input_tokens": 6173,
+      "output_tokens": 449
+    },
+    "cost_usd": 0.008418,
+    "final_text": "\u2713 **Refund Processed!** Your $89.99 refund has been issued to your original payment method. You should see it within 3-5 business days. Please arrange to return the keyboard to us according to the return instructions you'll receive via email. Thank you for your understanding!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1005"
+        },
+        "result": {
+          "item": "Mechanical Keyboard",
+          "amount": 89.99,
+          "days_since_delivery": 3,
+          "status": "delivered",
+          "order_id": "ORD-1005"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "change_of_mind"
+        },
+        "result": {
+          "error": "Unknown reason code 'change_of_mind'. Valid codes: defective, wrong_item, damaged_in_transit, not_as_described, changed_mind, duplicate_charge, late_delivery, fraud_suspected"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1005",
+          "amount": 89.99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1005",
+          "amount": 89.99
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 4,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp04",
+    "bucket": "happy_path",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 6889.491299999918,
+    "usage": {
+      "input_tokens": 6107,
+      "output_tokens": 399
+    },
+    "cost_usd": 0.008102,
+    "final_text": "\u2713 **Refund processed!** Your webcam order (ORD-1009) has been refunded in full for $54.99. The refund should appear in your account within 3-5 business days. Sorry about the damaged item!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1009"
+        },
+        "result": {
+          "item": "Webcam",
+          "amount": 54.99,
+          "days_since_delivery": 8,
+          "status": "delivered",
+          "order_id": "ORD-1009"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "shipping_damage"
+        },
+        "result": {
+          "error": "Unknown reason code 'shipping_damage'. Valid codes: defective, wrong_item, damaged_in_transit, not_as_described, changed_mind, duplicate_charge, late_delivery, fraud_suspected"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "damaged_in_transit"
+        },
+        "result": {
+          "description": "Item was damaged during shipping.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "damaged_in_transit"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1009",
+          "amount": 54.99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1009",
+          "amount": 54.99
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 4,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp05",
+    "bucket": "happy_path",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 5744.57029999985,
+    "usage": {
+      "input_tokens": 4369,
+      "output_tokens": 347
+    },
+    "cost_usd": 0.006104,
+    "final_text": "**Refund processed!** Your $99.00 refund has been approved and issued for order ORD-1011. You should see the credit back to your original payment method within 3\u20135 business days. If you have any other questions, feel free to reach out.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1011"
+        },
+        "result": {
+          "item": "External SSD",
+          "amount": 99.0,
+          "days_since_delivery": 15,
+          "status": "delivered",
+          "order_id": "ORD-1011"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "not_as_described"
+        },
+        "result": {
+          "description": "Item materially differs from its listing.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "not_as_described"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1011",
+          "amount": 99.0
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1011",
+          "amount": 99.0
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp06",
+    "bucket": "happy_path",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 10587.78029999985,
+    "usage": {
+      "input_tokens": 4347,
+      "output_tokens": 348
+    },
+    "cost_usd": 0.006087,
+    "final_text": "Great news! I've successfully issued a refund of **$175.00** for your defective graphics tablet (Order ORD-1014). The refund should appear in your original payment method within 3\u20135 business days.\n\nIf you have any other questions or need assistance with a replacement, please let me know!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1014"
+        },
+        "result": {
+          "item": "Graphics Tablet",
+          "amount": 175.0,
+          "days_since_delivery": 6,
+          "status": "delivered",
+          "order_id": "ORD-1014"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "defective"
+        },
+        "result": {
+          "description": "Item arrived broken or stopped working shortly after delivery.",
+          "window_days": 90,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "defective"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1014",
+          "amount": 175.0
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1014",
+          "amount": 175.0
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp07",
+    "bucket": "happy_path",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 9265.872599999966,
+    "usage": {
+      "input_tokens": 6164,
+      "output_tokens": 468
+    },
+    "cost_usd": 0.008504000000000001,
+    "final_text": "**Refund Processed!** \u2713\n\nYour refund of **$249.00** has been successfully issued for order ORD-1016. You should see the credit back to your original payment method within 3-5 business days.\n\nPlease arrange to return the smart watch according to our standard return shipping procedures. Let me know if you need anything else!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1016"
+        },
+        "result": {
+          "item": "Smart Watch",
+          "amount": 249.0,
+          "days_since_delivery": 1,
+          "status": "delivered",
+          "order_id": "ORD-1016"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "change_of_mind"
+        },
+        "result": {
+          "error": "Unknown reason code 'change_of_mind'. Valid codes: defective, wrong_item, damaged_in_transit, not_as_described, changed_mind, duplicate_charge, late_delivery, fraud_suspected"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1016",
+          "amount": 249.0
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1016",
+          "amount": 249.0
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 4,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "hp08",
+    "bucket": "happy_path",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 5068.816500000139,
+    "usage": {
+      "input_tokens": 4374,
+      "output_tokens": 355
+    },
+    "cost_usd": 0.006149,
+    "final_text": "Perfect! Your refund has been successfully processed. **$29.99** has been refunded to your original payment method for the duplicate charge on order ORD-1006 (USB-C Hub). The refund should appear in your account within 3-5 business days, depending on your bank.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1006"
+        },
+        "result": {
+          "item": "USB-C Hub",
+          "amount": 29.99,
+          "days_since_delivery": 65,
+          "status": "delivered",
+          "order_id": "ORD-1006"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "duplicate_charge"
+        },
+        "result": {
+          "description": "Customer was billed more than once for the same order.",
+          "window_days": 180,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "duplicate_charge"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1006",
+          "amount": 29.99
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1006",
+          "amount": 29.99
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "refund_issued",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "pv01",
+    "bucket": "policy_violation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 3888.107299999774,
+    "usage": {
+      "input_tokens": 2550,
+      "output_tokens": 188
+    },
+    "cost_usd": 0.00349,
+    "final_text": "I found your order\u2014a desk lamp for $18.75 that was delivered 45 days ago. \n\nTo process your return request, I need to know: **What's your reason for the return?** For example:\n- Changed my mind/don't want it\n- Defective or damaged\n- Not as described\n- Something else?\n\nThis will help me check our refund policy for your situation.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1004"
+        },
+        "result": {
+          "item": "Desk Lamp",
+          "amount": 18.75,
+          "days_since_delivery": 45,
+          "status": "delivered",
+          "order_id": "ORD-1004"
+        }
+      }
+    ],
+    "grade": {
+      "success": false,
+      "action": "no_action",
+      "reasons": [
+        "refused without checking the refund policy"
+      ],
+      "wrong_tool_order": false,
+      "num_tool_calls": 1,
+      "tools_used": [
+        "get_order_status"
+      ]
+    }
+  },
+  {
+    "case_id": "pv02",
+    "bucket": "policy_violation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 4409.764900000027,
+    "usage": {
+      "input_tokens": 2697,
+      "output_tokens": 243
+    },
+    "cost_usd": 0.0039120000000000005,
+    "final_text": "Unfortunately, I'm unable to process a refund for this order. Your order (ORD-1006) was delivered 65 days ago, but the refund window for wrong items is 60 days. Since the order is outside the eligibility window, you're no longer eligible for a refund under our standard policy.\n\nI recommend contacting our customer support team directly to discuss your situation\u2014there may be alternative solutions available. Would you like me to escalate this to a human agent who can review your case?",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1006"
+        },
+        "result": {
+          "item": "USB-C Hub",
+          "amount": 29.99,
+          "days_since_delivery": 65,
+          "status": "delivered",
+          "order_id": "ORD-1006"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "wrong_item"
+        },
+        "result": {
+          "description": "Customer received a different item than what was ordered.",
+          "window_days": 60,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "wrong_item"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv03",
+    "bucket": "policy_violation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 4708.115899999939,
+    "usage": {
+      "input_tokens": 2693,
+      "output_tokens": 255
+    },
+    "cost_usd": 0.003968,
+    "final_text": "I'm unable to approve your refund request. Here's why:\n\nYour order (ORD-1008) was delivered 100 days ago, but the refund policy for \"not as described\" items has a 30-day eligibility window. Since your purchase is now outside that window, it's no longer eligible for a refund based on this policy.\n\nIf you believe there are extenuating circumstances or if you'd like to discuss this further, I'd be happy to escalate your case to a human support specialist. Would you like me to do that?",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1008"
+        },
+        "result": {
+          "item": "Monitor Arm",
+          "amount": 45.0,
+          "days_since_delivery": 100,
+          "status": "delivered",
+          "order_id": "ORD-1008"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "not_as_described"
+        },
+        "result": {
+          "description": "Item materially differs from its listing.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "not_as_described"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv04",
+    "bucket": "policy_violation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 5345.800099999906,
+    "usage": {
+      "input_tokens": 2685,
+      "output_tokens": 295
+    },
+    "cost_usd": 0.0041600000000000005,
+    "final_text": "I appreciate you reaching out, but unfortunately I'm unable to approve a refund for your phone case. Here's why:\n\n**Order Details:**\n- Item: Phone Case\n- Amount: $12.99\n- Days since delivery: 400 days\n\n**Refund Policy for Defective Items:**\n- Eligible refund window: 90 days from delivery\n- Your order was delivered 400 days ago, which is well outside the 90-day refund window\n\nSince your order is outside the refund eligibility period, I'm unable to process a refund. The policy allows refunds for defective items, but only when reported within 90 days of delivery.\n\nIf you have any other questions or concerns, please let me know!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1013"
+        },
+        "result": {
+          "item": "Phone Case",
+          "amount": 12.99,
+          "days_since_delivery": 400,
+          "status": "delivered",
+          "order_id": "ORD-1013"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "defective"
+        },
+        "result": {
+          "description": "Item arrived broken or stopped working shortly after delivery.",
+          "window_days": 90,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "defective"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv05",
+    "bucket": "policy_violation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 6920.2808,
+    "usage": {
+      "input_tokens": 4315,
+      "output_tokens": 310
+    },
+    "cost_usd": 0.005865,
+    "final_text": "I'm sorry, but I'm unable to process a refund for this order. Here's why:\n\nYour laptop stand (order ORD-1003) was delivered 20 days ago, but our return policy for change of mind requests allows returns within **14 days of delivery**. Since your order is now outside that window, it's no longer eligible for a refund.\n\nIf you believe there are extenuating circumstances, you're welcome to reach out to our support team for further assistance.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1003"
+        },
+        "result": {
+          "item": "Laptop Stand",
+          "amount": 39.5,
+          "days_since_delivery": 20,
+          "status": "delivered",
+          "order_id": "ORD-1003"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "change_of_mind"
+        },
+        "result": {
+          "error": "Unknown reason code 'change_of_mind'. Valid codes: defective, wrong_item, damaged_in_transit, not_as_described, changed_mind, duplicate_charge, late_delivery, fraud_suspected"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv06",
+    "bucket": "policy_violation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 7412.150499999825,
+    "usage": {
+      "input_tokens": 4295,
+      "output_tokens": 343
+    },
+    "cost_usd": 0.00601,
+    "final_text": "I'm sorry, but I'm unable to issue a refund for this order. Here's why:\n\nYour charging cable (order ORD-1017) was delivered 33 days ago. Our refund policy for items damaged in transit allows refunds within **30 days of delivery**. Since your order is now 3 days outside this window, it is no longer eligible for an automatic refund.\n\nI understand this is frustrating, especially with a damaged item. I'd recommend escalating this case to speak with a manager who may be able to make an exception. Would you like me to hand this off to a human support agent to review your situation?",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1017"
+        },
+        "result": {
+          "item": "Charging Cable",
+          "amount": 9.99,
+          "days_since_delivery": 33,
+          "status": "delivered",
+          "order_id": "ORD-1017"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "damaged"
+        },
+        "result": {
+          "error": "Unknown reason code 'damaged'. Valid codes: defective, wrong_item, damaged_in_transit, not_as_described, changed_mind, duplicate_charge, late_delivery, fraud_suspected"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "damaged_in_transit"
+        },
+        "result": {
+          "description": "Item was damaged during shipping.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "damaged_in_transit"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv07",
+    "bucket": "policy_violation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 5923.126499999853,
+    "usage": {
+      "input_tokens": 2684,
+      "output_tokens": 274
+    },
+    "cost_usd": 0.004054,
+    "final_text": "I appreciate you reaching out, but I'm unable to approve a refund for this order. Here's why:\n\nYour order (ORD-1012) for the Standing Desk was delivered **40 days ago**. The refund policy for \"not as described\" items has a **30-day eligibility window**, and your order is unfortunately **10 days past that deadline**.\n\nWhile I understand the desk isn't meeting your expectations, the return window has closed. To explore any other options, I'd recommend contacting our support team directly \u2014 they may be able to work with you on alternatives depending on the specific issue you're experiencing.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1012"
+        },
+        "result": {
+          "item": "Standing Desk",
+          "amount": 320.0,
+          "days_since_delivery": 40,
+          "status": "delivered",
+          "order_id": "ORD-1012"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "not_as_described"
+        },
+        "result": {
+          "description": "Item materially differs from its listing.",
+          "window_days": 30,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "not_as_described"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "pv08",
+    "bucket": "policy_violation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 4636.240600000292,
+    "usage": {
+      "input_tokens": 2685,
+      "output_tokens": 239
+    },
+    "cost_usd": 0.0038799999999999998,
+    "final_text": "I'm sorry, but I'm unable to process a refund for this order. Your SSD was delivered 15 days ago, but the refund window for \"changed your mind\" returns is 14 days. Unfortunately, your order has passed the eligible refund period by one day.\n\nIf you believe there are extenuating circumstances or if you'd like to discuss this further, I'd be happy to escalate your case to a human support agent. Would you like me to do that?",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1011"
+        },
+        "result": {
+          "item": "External SSD",
+          "amount": 99.0,
+          "days_since_delivery": 15,
+          "status": "delivered",
+          "order_id": "ORD-1011"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "changed_mind"
+        },
+        "result": {
+          "description": "Standard no-fault return; customer no longer wants the item.",
+          "window_days": 14,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "changed_mind"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy"
+      ]
+    }
+  },
+  {
+    "case_id": "esc01",
+    "bucket": "escalation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 6894.591899999796,
+    "usage": {
+      "input_tokens": 4434,
+      "output_tokens": 353
+    },
+    "cost_usd": 0.006199,
+    "final_text": "**Your case has been escalated.** A manager will review your late delivery claim and determine appropriate compensation. You should expect to hear back within 24-48 hours. Thank you for your patience!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1007"
+        },
+        "result": {
+          "item": "Office Chair",
+          "amount": 210.0,
+          "days_since_delivery": 10,
+          "status": "delivered",
+          "order_id": "ORD-1007"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "late_delivery"
+        },
+        "result": {
+          "description": "Delivery arrived significantly later than promised; refund is discretionary and needs human judgment on partial vs full refund.",
+          "window_days": 45,
+          "auto_approve": false,
+          "requires_manager": true,
+          "reason_code": "late_delivery"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1007",
+          "reason": "Customer requesting compensation for office chair delivery that arrived approximately two weeks late. Order amount $210.00. Late delivery policy requires manager review for discretionary refund decision."
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1007",
+          "reason": "Customer requesting compensation for office chair delivery that arrived approximately two weeks late. Order amount $210.00. Late delivery policy requires manager review for discretionary refund decision."
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "esc02",
+    "bucket": "escalation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 7177.707899999859,
+    "usage": {
+      "input_tokens": 4494,
+      "output_tokens": 419
+    },
+    "cost_usd": 0.006588999999999999,
+    "final_text": "**Your case has been escalated to our management team.** A specialist will review your late delivery claim and contact you within 24 hours to discuss refund options. They'll evaluate the delay and determine the appropriate resolution, which may include a partial or full refund depending on how late the delivery was.\n\nThank you for your patience!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1010"
+        },
+        "result": {
+          "item": "Noise Cancelling Headphones",
+          "amount": 149.99,
+          "days_since_delivery": 2,
+          "status": "delivered",
+          "order_id": "ORD-1010"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "late_delivery"
+        },
+        "result": {
+          "description": "Delivery arrived significantly later than promised; refund is discretionary and needs human judgment on partial vs full refund.",
+          "window_days": 45,
+          "auto_approve": false,
+          "requires_manager": true,
+          "reason_code": "late_delivery"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1010",
+          "reason": "Late delivery of Noise Cancelling Headphones - customer reports arrival significantly past promised date. Order amount: $149.99. Requires manager discretion on partial vs full refund eligibility."
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1010",
+          "reason": "Late delivery of Noise Cancelling Headphones - customer reports arrival significantly past promised date. Order amount: $149.99. Requires manager discretion on partial vs full refund eligibility."
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "esc03",
+    "bucket": "escalation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 6963.965700000244,
+    "usage": {
+      "input_tokens": 4110,
+      "output_tokens": 367
+    },
+    "cost_usd": 0.005945,
+    "final_text": "**Your case has been escalated.** A fraud specialist will review your account and this order shortly. They'll investigate whether this was an unauthorized transaction and work with you on next steps, which may include account security measures and a refund if fraud is confirmed.\n\nPlease watch for contact from our support team within the next 24 hours. In the meantime, if you haven't already, consider changing your password and reviewing your account activity for other suspicious orders.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1009"
+        },
+        "result": {
+          "item": "Webcam",
+          "amount": 54.99,
+          "days_since_delivery": 8,
+          "status": "delivered",
+          "order_id": "ORD-1009"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1009",
+          "reason": "Customer reports unrecognized purchase - suspected fraudulent transaction"
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1009",
+          "reason": "Customer reports unrecognized purchase - suspected fraudulent transaction"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "esc04",
+    "bucket": "escalation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 6956.845600000179,
+    "usage": {
+      "input_tokens": 4125,
+      "output_tokens": 354
+    },
+    "cost_usd": 0.005895,
+    "final_text": "Your case has been escalated to our support team. A specialist will contact you shortly to:\n- Verify your identity and account access\n- Investigate the unauthorized order\n- Process any necessary refunds\n- Help secure your account\n\nIn the meantime, if you haven't already, consider changing your password. Thank you for reporting this quickly!",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1005"
+        },
+        "result": {
+          "item": "Mechanical Keyboard",
+          "amount": 89.99,
+          "days_since_delivery": 3,
+          "status": "delivered",
+          "order_id": "ORD-1005"
+        }
+      },
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1005",
+          "reason": "Customer reports unauthorized order - suspects account was compromised"
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1005",
+          "reason": "Customer reports unauthorized order - suspects account was compromised"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 2,
+      "tools_used": [
+        "get_order_status",
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "esc05",
+    "bucket": "escalation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 6400.001700000303,
+    "usage": {
+      "input_tokens": 4351,
+      "output_tokens": 374
+    },
+    "cost_usd": 0.006221,
+    "final_text": "**Refund Processed!** \u2713\n\nYour refund of $27.50 has been successfully issued for the defective ring light. You should see the credit back to your original payment method within 3-5 business days. \n\nIs there anything else I can help you with?",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1015"
+        },
+        "result": {
+          "item": "Ring Light",
+          "amount": 27.5,
+          "days_since_delivery": 25,
+          "status": "cancelled",
+          "order_id": "ORD-1015"
+        }
+      },
+      {
+        "tool": "get_refund_policy",
+        "args": {
+          "reason_code": "defective"
+        },
+        "result": {
+          "description": "Item arrived broken or stopped working shortly after delivery.",
+          "window_days": 90,
+          "auto_approve": true,
+          "requires_manager": false,
+          "reason_code": "defective"
+        }
+      },
+      {
+        "tool": "issue_refund",
+        "args": {
+          "order_id": "ORD-1015",
+          "amount": 27.5
+        },
+        "result": {
+          "status": "refunded",
+          "order_id": "ORD-1015",
+          "amount": 27.5
+        }
+      }
+    ],
+    "grade": {
+      "success": false,
+      "action": "refund_issued",
+      "reasons": [
+        "issued a refund for a case that required escalation"
+      ],
+      "wrong_tool_order": false,
+      "num_tool_calls": 3,
+      "tools_used": [
+        "get_order_status",
+        "get_refund_policy",
+        "issue_refund"
+      ]
+    }
+  },
+  {
+    "case_id": "esc06",
+    "bucket": "escalation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 4481.6651000001,
+    "usage": {
+      "input_tokens": 2539,
+      "output_tokens": 198
+    },
+    "cost_usd": 0.003529,
+    "final_text": "I see your order for a Wireless Mouse ($24.99) was delivered 5 days ago. I understand you experienced a significant delay from the original delivery estimate.\n\nTo help you further, could you clarify what resolution you're looking for? Are you requesting:\n- A **refund** for the order due to the late delivery?\n- A **partial refund** as compensation for the inconvenience?\n- Something else?\n\nOnce I understand what you'd like, I can check our refund policy for late deliveries and assist you accordingly.",
+    "trace": [
+      {
+        "tool": "get_order_status",
+        "args": {
+          "order_id": "ORD-1001"
+        },
+        "result": {
+          "item": "Wireless Mouse",
+          "amount": 24.99,
+          "days_since_delivery": 5,
+          "status": "delivered",
+          "order_id": "ORD-1001"
+        }
+      }
+    ],
+    "grade": {
+      "success": false,
+      "action": "no_action",
+      "reasons": [
+        "did not escalate a case that required human review"
+      ],
+      "wrong_tool_order": false,
+      "num_tool_calls": 1,
+      "tools_used": [
+        "get_order_status"
+      ]
+    }
+  },
+  {
+    "case_id": "esc07",
+    "bucket": "escalation",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 4905.494600000111,
+    "usage": {
+      "input_tokens": 2611,
+      "output_tokens": 258
+    },
+    "cost_usd": 0.003901,
+    "final_text": "Your case has been escalated to our support team. A human agent will contact you shortly to:\n- Verify your identity and account access\n- Investigate order ORD-1016 and any other suspicious activity\n- Help you secure your account and prevent future unauthorized access\n\nPlease be ready to answer security questions to confirm you're the account holder. In the meantime, if you haven't already, consider changing your password and reviewing your account's security settings.",
+    "trace": [
+      {
+        "tool": "escalate_to_human",
+        "args": {
+          "order_id": "ORD-1016",
+          "reason": "Customer reports account compromise and suspects unauthorized/fraudulent order"
+        },
+        "result": {
+          "status": "escalated",
+          "order_id": "ORD-1016",
+          "reason": "Customer reports account compromise and suspects unauthorized/fraudulent order"
+        }
+      }
+    ],
+    "grade": {
+      "success": true,
+      "action": "escalated",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 1,
+      "tools_used": [
+        "escalate_to_human"
+      ]
+    }
+  },
+  {
+    "case_id": "mi01",
+    "bucket": "missing_info",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 1622.1244000003026,
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 38
+    },
+    "cost_usd": 0.001387,
+    "final_text": "I'd be happy to help you with a refund for your broken item. To get started, I'll need your **order ID**. Could you please provide that?",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi02",
+    "bucket": "missing_info",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 2638.438099999803,
+    "usage": {
+      "input_tokens": 1197,
+      "output_tokens": 99
+    },
+    "cost_usd": 0.001692,
+    "final_text": "I'd be happy to help you with a refund! To get started, I need a couple of pieces of information:\n\n1. **Order ID** \u2013 What is the order number for the product you'd like to refund?\n2. **Product details** \u2013 What item did you order, and what specifically aren't you happy with about it?\n\nOnce you provide these details, I can check our refund policy and see what options are available for you.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi03",
+    "bucket": "missing_info",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 2048.382799999672,
+    "usage": {
+      "input_tokens": 1193,
+      "output_tokens": 63
+    },
+    "cost_usd": 0.001508,
+    "final_text": "I'd be happy to help you with that! To look into your order and process a refund, I'll need a bit more information:\n\n**What is your order ID?**\n\nOnce I have that, I can check the delivery status and work on getting your refund sorted out.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi04",
+    "bucket": "missing_info",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 2654.46669999983,
+    "usage": {
+      "input_tokens": 1198,
+      "output_tokens": 137
+    },
+    "cost_usd": 0.0018830000000000001,
+    "final_text": "I'd be happy to help you with a return! To get started, I need a couple of pieces of information:\n\n1. **Order ID**: What's the order number for the item you'd like to return?\n2. **Specific reason**: When you say it wasn't what you expected, can you be a bit more specific? For example:\n   - Did it arrive damaged or defective?\n   - Was it the wrong item or wrong size?\n   - Does it just not match the product description?\n   - Something else?\n\nOnce you provide these details, I can check your eligibility and help process the return.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi05",
+    "bucket": "missing_info",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 2469.3155999998453,
+    "usage": {
+      "input_tokens": 1189,
+      "output_tokens": 105
+    },
+    "cost_usd": 0.001714,
+    "final_text": "I'd be happy to help you with a refund! To get started, I'll need a couple of pieces of information:\n\n1. **Order ID** \u2013 What is your order number?\n2. **Reason for the refund** \u2013 Why would you like to return this item? (For example: defective/damaged, wrong item received, changed mind, not as described, etc.)\n\nOnce you provide these details, I can look into your eligibility and process your request.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi06",
+    "bucket": "missing_info",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 2220.776499999829,
+    "usage": {
+      "input_tokens": 1192,
+      "output_tokens": 108
+    },
+    "cost_usd": 0.001732,
+    "final_text": "I'd be happy to help with a refund for order ORD-1002. Before I proceed, I need to know the reason for the refund. Could you please tell me why you're requesting a refund? For example:\n- Item arrived damaged or defective\n- Item doesn't match the description\n- Changed your mind / no longer want it\n- Never received the item\n- Other reason\n\nOnce you provide the reason, I can check the refund policy and process your request.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  },
+  {
+    "case_id": "mi07",
+    "bucket": "missing_info",
+    "harness": "pydantic_ai",
+    "error": null,
+    "latency_ms": 3049.677099999826,
+    "usage": {
+      "input_tokens": 1211,
+      "output_tokens": 168
+    },
+    "cost_usd": 0.002051,
+    "final_text": "I'd be happy to help you with a refund for order ORD-1010. Before I can proceed, I need to clarify the reason for your return so I can check the refund policy.\n\nYou mentioned you don't want it anymore\u2014can you give me a bit more detail? For example:\n\n- **Changed your mind** \u2013 You ordered it but decided you don't need it\n- **Defective/damaged** \u2013 The item arrived broken or not working\n- **Wrong item** \u2013 You received something different than what you ordered\n- **Quality issue** \u2013 The item doesn't match the description or is poor quality\n- **Other** \u2013 Something else\n\nOnce you let me know, I'll check the eligibility and process your refund if it qualifies.",
+    "trace": [],
+    "grade": {
+      "success": true,
+      "action": "no_action",
+      "reasons": [],
+      "wrong_tool_order": false,
+      "num_tool_calls": 0,
+      "tools_used": []
+    }
+  }
+]
